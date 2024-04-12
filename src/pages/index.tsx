@@ -8,6 +8,7 @@ import Stats from "@/components/stats/Stats";
 import CallToAction2 from "@/components/CallToAction2";
 import Footer from "@/components/Footer";
 import ShortenedLinksList from "@/components/shortener/ShortenedLinksList";
+import { AnimatePresence } from "framer-motion";
 // import useLocalStorageState from "@/hooks/useLocalStorageState";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -53,6 +54,7 @@ export default function Home() {
         />
         <ShortenedLinksList
           linkEls={linkEls}
+          onLinkEls={setLinkEls}
           shortened={shortened}
           resolvedShortened={resolvedShortened}
           onResolvedShortened={setResolvedShortened}

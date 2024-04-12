@@ -1,5 +1,5 @@
 import Button from "../Button";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function OpenMenu() {
   const variants = {

@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import ShortenedLink from "./ShortenedLink";
+import { AnimatePresence, animate, motion } from "framer-motion";
 
 interface ShortenedLinkProps {
   linkEls: any[];
   shortened: Promise<string> | string;
   resolvedShortened: string | null;
   onResolvedShortened: (resolvedShortened: string) => void;
+  onLinkEls: Dispatch<SetStateAction<any[]>>;
 }
 
 export default function ShortenedLinksList({
@@ -13,6 +15,7 @@ export default function ShortenedLinksList({
   resolvedShortened,
   onResolvedShortened,
   linkEls,
+  onLinkEls,
 }: ShortenedLinkProps) {
   useEffect(() => {
     if (typeof shortened === "object" && "then" in shortened) {
@@ -38,15 +41,27 @@ export default function ShortenedLinksList({
     return <p className="text-center text-sm text-green-400">Loading...</p>;
 
   return (
-    <section className="flex flex-col mx-auto w-full -translate-y-[72px] mt-8 space-y-4">
-      {linkEls?.map((linkItem) => (
-        <ShortenedLink
-          key={linkItem.id}
-          linkEntered={linkItem.url}
-          linkItem={linkItem}
-          resolvedShortened={linkItem.shortenURL}
-        />
-      ))}
-    </section>
+    <motion.section className="flex flex-col mx-auto w-full -translate-y-[72px] mt-8 space-y-4">
+      <AnimatePresence>
+        {linkEls?.map((linkItem) => (
+          <ShortenedLink
+            key={linkItem.id}
+            linkEntered={linkItem.url}
+            linkItem={linkItem}
+            resolvedShortened={linkItem.shortenURL}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              initial: { duration: 0.1 },
+              animate: { duration: 0.2 },
+              exit: { duration: 0.3 },
+            }}
+            LinkEls={linkEls}
+            onLinkEls={onLinkEls}
+          />
+        ))}
+      </AnimatePresence>
+    </motion.section>
   );
 }
