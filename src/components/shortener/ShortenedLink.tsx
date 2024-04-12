@@ -97,7 +97,7 @@ export default function ShortenedLink({
 
       <span className="md:hidden w-full bg-grayishviolet/50 h-[1px]"></span>
 
-      <div className="flex flex-col md:flex-row gap-4 md:items-center p-4 md:p-0">
+      <div className="flex flex-col md:flex-row gap-4  md:items-center p-4 md:p-0">
         <Link className="text-cyan" href={resolvedShortened}>
           {resolvedShortened}
         </Link>
