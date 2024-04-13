@@ -11,13 +11,10 @@ interface ShortenedLinkProps {
   animate?: any;
   exit?: any;
   transition?: any;
-  LinkEls?: any;
-  key?: any;
   onLinkEls: any;
 }
 
 export default function ShortenedLink({
-  key,
   linkEntered,
   resolvedShortened,
   linkItem,
@@ -25,13 +22,12 @@ export default function ShortenedLink({
   animate,
   exit,
   transition,
-  LinkEls,
   onLinkEls,
 }: ShortenedLinkProps) {
   const [copied, setCopied] = useState<boolean>(false);
   const [beingHovered, setBeingHovered] = useState<boolean>(false);
 
-  if (resolvedShortened === undefined)
+  if (resolvedShortened === undefined && !linkEntered)
     return (
       <p className="text-center text-sm text-red">
         Oops, cannot shorten this link!

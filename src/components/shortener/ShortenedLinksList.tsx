@@ -27,15 +27,15 @@ export default function ShortenedLinksList({
       // If shortened is not a promise, it's already resolved
       onResolvedShortened(shortened as string);
     }
-    console.log(resolvedShortened); // this ain't logging in for some reason.
+    console.log(resolvedShortened);
   }, [shortened, resolvedShortened, onResolvedShortened]);
 
-  if (resolvedShortened === undefined)
-    return (
-      <p className="text-center text-sm text-red">
-        Oops, cannot shorten this link!
-      </p>
-    );
+  // if (resolvedShortened === undefined)
+  //   return (
+  //     <p className="text-center text-sm text-red">
+  //       Oops, cannot shorten this link!
+  //     </p>
+  //   );
 
   if (!resolvedShortened && !linkEls)
     return <p className="text-center text-sm text-green-400">Loading...</p>;
@@ -57,7 +57,6 @@ export default function ShortenedLinksList({
               animate: { duration: 0.2 },
               exit: { duration: 0.3 },
             }}
-            LinkEls={linkEls}
             onLinkEls={onLinkEls}
           />
         ))}
