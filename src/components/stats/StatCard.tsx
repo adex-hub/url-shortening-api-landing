@@ -22,7 +22,7 @@ export default function StatCard({
           <Image src={src} alt={title} width={40} height={40} />
         </div>
         <div className="space-y-4 translate-y-[-10px] md:translate-y-[-20px] text-center lg:text-left">
-          <h4 className="font-bold text-[22px] text-verydarkviolet">{title}</h4>
+          <h3 className="font-bold text-[22px] text-verydarkviolet">{title}</h3>
           <p className="text-base text-grayishviolet">{children}</p>
         </div>
       </div>
