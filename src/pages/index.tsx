@@ -9,6 +9,7 @@ import CallToAction2 from "@/components/CallToAction2";
 import Footer from "@/components/Footer";
 import ShortenedLinksList from "@/components/shortener/ShortenedLinksList";
 import { AnimatePresence } from "framer-motion";
+import Head from "next/head";
 // import useLocalStorageState from "@/hooks/useLocalStorageState";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -40,29 +41,37 @@ export default function Home() {
 
   return (
     <>
-      <Header toggleMenu={handleMenuButtonClicked} />
-      {menuOpen && <OpenMenu />}
-      <Hero />
-      <section className="bg-subtlegray mt-[156px]">
-        <ShortenerForm
-          linkEntered={linkEntered}
-          onLinkEntered={setLinkEntered}
-          resolvedShortened={resolvedShortened}
-          shortened={shortened}
-          onShortened={setShortened}
-          onLinkEls={setLinkEls}
-        />
-        <ShortenedLinksList
-          linkEls={linkEls}
-          onLinkEls={setLinkEls}
-          shortened={shortened}
-          resolvedShortened={resolvedShortened}
-          onResolvedShortened={setResolvedShortened}
-        />
-        <Stats />
-      </section>
-      <CallToAction2 />
-      <Footer />
+      <Head>
+        <title>Link shortener</title>
+        <meta property="og:title" content="Link shortener" key="title" />
+      </Head>
+      <body>
+        <Header toggleMenu={handleMenuButtonClicked} />
+        <main>
+          {menuOpen && <OpenMenu />}
+          <Hero />
+          <section className="bg-subtlegray mt-[156px]">
+            <ShortenerForm
+              linkEntered={linkEntered}
+              onLinkEntered={setLinkEntered}
+              resolvedShortened={resolvedShortened}
+              shortened={shortened}
+              onShortened={setShortened}
+              onLinkEls={setLinkEls}
+            />
+            <ShortenedLinksList
+              linkEls={linkEls}
+              onLinkEls={setLinkEls}
+              shortened={shortened}
+              resolvedShortened={resolvedShortened}
+              onResolvedShortened={setResolvedShortened}
+            />
+            <Stats />
+          </section>
+          <CallToAction2 />
+        </main>
+        <Footer />
+      </body>
     </>
   );
 }
